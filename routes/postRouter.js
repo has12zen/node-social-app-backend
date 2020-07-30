@@ -7,7 +7,7 @@ const router = express.Router({ mergeParams: true });
 router
   .route('/')
   .get(postController.getAllPosts)
-  .post(authController.isLoggedIn, postController.createPost);
+  .post(authController.loginStatus, postController.createPost);
 
 router
   .route('/:id')

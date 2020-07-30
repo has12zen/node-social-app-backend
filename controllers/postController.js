@@ -3,11 +3,11 @@ const factory = require('./handlerFactory');
 const catchAsync = require('../utils/catchAsync');
 exports.createPost = catchAsync(async (req, res, next) => {
   //To allow For
+  console.log(req.user);
   const post = await Post.create({
     ...req.body,
     user: req.user ? req.user._id : 'Anonimous',
     createdAt: Date.now(),
-    voteCount: 0,
   });
 
   post.user = {
