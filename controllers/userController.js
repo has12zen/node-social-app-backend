@@ -3,7 +3,7 @@ const Vote = require('../models/votesModel');
 const factory = require('./handlerFactory');
 const catchAsync = require('../utils/catchAsync');
 //Factory Exports
-exports.getAllUsers = factory.getAll(User);
+exports.getAllUsers = factory.getAll(User, { active: { $ne: false } });
 exports.getUser = catchAsync(async (req, res, next) => {
   let query = User.findById(req.params.id);
   const doc = await query;

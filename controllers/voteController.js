@@ -44,12 +44,11 @@ exports.createUpVote = catchAsync(async (req, res, next) => {
 exports.createDownVote = catchAsync(async (req, res, next) => {
   //To allow For
   let post = await Post.findById(req.params.id);
-
   if (!post) {
     return new AppError(400, { messate: 'No Post with That Id' });
   }
-  let vote = await Vote.find({ user: req.user.id, post: post.id }).limit(1);
-
+  let vote = await Vote.findOne({ user: req.user.id, post: post._id });
+  console.log(post);
   if (!vote) {
     vote = await Vote.create({
       vote: 'down',

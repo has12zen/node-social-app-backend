@@ -20,10 +20,10 @@ exports.getOne = (Model, popOptions) =>
   });
 
 //Get All
-exports.getAll = (Model) =>
+exports.getAll = (Model, finOptions) =>
   catchAsync(async (req, res, next) => {
     //To allow For
-    const features = new APIFeatures(Model.find(), req.query)
+    const features = new APIFeatures(Model.find(finOptions), req.query)
       .filter()
       .sort()
       .limitFields()
